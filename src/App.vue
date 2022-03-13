@@ -37,6 +37,7 @@ export default {
   --clr-bg-dark-two: #141625;
   --clr-bg-dark-three: #1e2139;
   --clr-bg-dark-four: #252945;
+  --clr-white: #ffffff;
 }
 
 // Basic default global reset
