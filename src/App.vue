@@ -25,20 +25,18 @@ export default {
 
 // Global variables
 :root {
-  --clr-primary: #7c5dfa;
-  --clr-primary-hover: #9277ff;
-  --clr-secondary: #ec5757;
-  --clr-secondary-hover: rgb(255, 151, 151);
-
-  // --clr-purple-dark: #1e2139;
-  // --clr-purple-light: #252945;
-  // --clr-purple-dark: #dfe3fa;
-  // --clr-purple-light: #888eb0;
-  // --clr-purple-dark: #7e88c3;
-  // --clr-purple-light: #0c0e16;
-
+  --clr-accent-purple: #7c5dfa;
+  --clr-accent-purple-hover: #9277ff;
+  --clr-accent-red: #ec5757;
+  --clr-accent-red-hover: rgb(255, 151, 151);
+  --clr-grey-one: #888eb0;
+  --clr-grey-two: #7e88c3;
+  --clr-grey-three: #dfe3fa;
   --clr-bg-light: #f8f8fb;
-  --clr-bg-dark: #141625;
+  --clr-bg-dark-one: #0c0e16;
+  --clr-bg-dark-two: #141625;
+  --clr-bg-dark-three: #1e2139;
+  --clr-bg-dark-four: #252945;
 }
 
 // Basic default global reset

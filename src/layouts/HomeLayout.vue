@@ -28,6 +28,7 @@ export default {
   grid-template-columns: 10rem 1fr;
   grid-template-areas: "sidebar main";
   min-height: 100vh;
+  background: var(--clr-bg-dark-two);
 }
 
 .sidenav {
@@ -37,6 +38,7 @@ export default {
   width: 10rem;
   transition: all 0.3s ease-in-out;
   z-index: 2;
+  background: var(--clr-bg-dark-three);
 }
 .main {
   grid-area: main;
