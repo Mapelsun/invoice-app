@@ -53,6 +53,11 @@ export default {
     h2 {
       font-size: 3rem;
       font-weight: bold;
+      margin-bottom: 0.8rem;
+    }
+
+    p {
+      font-size: 1.2rem;
     }
   }
   &__right {

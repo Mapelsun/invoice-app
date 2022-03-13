@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: () => import("@/views/InvoiceHome.vue"),
+    component: () => import("@/views/InvoicesHome.vue"),
     meta: {
       layout: "home-layout",
     },

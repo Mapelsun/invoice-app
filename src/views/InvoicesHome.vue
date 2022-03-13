@@ -1,7 +1,7 @@
 <template>
   <section class="home">
     <app-invoice-header></app-invoice-header>
-    <app-empty-invoice></app-empty-invoice>
+    <app-empty-invoice v-if="dataPresent"></app-empty-invoice>
   </section>
 </template>
 
@@ -9,10 +9,15 @@
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
 export default {
-  name: "invoiceHome",
+  name: "invoicesHome",
   components: {
     "app-invoice-header": InvoiceHeader,
     "app-empty-invoice": EmptyInvoice,
+  },
+  data() {
+    return {
+      dataPresent: true,
+    };
   },
 };
 </script>
