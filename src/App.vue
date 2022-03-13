@@ -1,8 +1,23 @@
 <template>
   <div id="app">
-    <router-view />
+    <component :is="layout">
+      <transition name="fade">
+        <router-view />
+      </transition>
+    </component>
   </div>
 </template>
+
+<script>
+export default {
+  name: "App",
+  computed: {
+    layout() {
+      return `${this.$route.meta.layout}`;
+    },
+  },
+};
+</script>
 
 <style lang="scss">
 // Font import
@@ -56,7 +71,14 @@ select {
   font: inherit;
 }
 
-img {
-  width: 100%;
+// Vue Transitions
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
