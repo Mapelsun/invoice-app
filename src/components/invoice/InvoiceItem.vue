@@ -1,10 +1,12 @@
 <template>
   <div class="inv">
-    <p class="inv__id"><span>&#35;</span>RT3080</p>
-    <p class="inv__date">Due &nbsp;{{ "2021-08-19" | formatDate }}</p>
-    <p class="inv__name">Jensen Huang</p>
-    <p class="inv__price"><span>&#163;</span>1800.90</p>
-    <app-status-pill stat="paid"></app-status-pill>
+    <p class="inv__id"><span>&#35;</span>{{ invoice.id }}</p>
+    <p class="inv__date">Due &nbsp;{{ invoice.paymentDue | formatDate }}</p>
+    <p class="inv__name">{{ invoice.clientName }}</p>
+    <p class="inv__price">
+      <span>&#163;</span>{{ invoice.total | formatAmount }}
+    </p>
+    <app-status-pill :stat="invoice.status"></app-status-pill>
     <img
       class="inv__image"
       src="@/assets/icon-arrow-right.svg"
@@ -19,6 +21,11 @@ export default {
   name: "invoiceItem",
   components: {
     "app-status-pill": StatusPill,
+  },
+  props: {
+    invoice: {
+      type: Object,
+    },
   },
 };
 </script>

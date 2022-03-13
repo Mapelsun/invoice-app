@@ -1,17 +1,26 @@
 <template>
   <section class="home">
     <app-invoice-header></app-invoice-header>
-    <app-empty-invoice v-if="dataPresent"></app-empty-invoice>
-    <app-invoices-list v-else></app-invoices-list>
+    <div>
+      <app-invoices-list
+        v-if="invoices.length > 0"
+        :invoices="invoices"
+      ></app-invoices-list>
+      <app-empty-invoice v-else></app-empty-invoice>
+    </div>
   </section>
 </template>
 
 <script>
+import tempData from "@/json/data";
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
 import InvoicesList from "@/components/invoice/InvoicesList";
 export default {
   name: "invoicesHome",
+  created() {
+    this.invoices = tempData;
+  },
   components: {
     "app-invoice-header": InvoiceHeader,
     "app-empty-invoice": EmptyInvoice,
@@ -20,6 +29,7 @@ export default {
   data() {
     return {
       dataPresent: false,
+      invoices: [],
     };
   },
 };

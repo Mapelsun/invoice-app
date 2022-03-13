@@ -27,6 +27,19 @@ Vue.filter("formatDate", (value) => {
   }
 });
 
+Vue.filter("formatAmount", (digit) => {
+  let num;
+  if (typeof digit !== "string") {
+    if (typeof digit === "number") {
+      num = digit;
+    }
+  } else num = Number.parseFloat(digit, 10);
+  if (typeof num !== undefined) {
+    num = num.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+    return `${num}`;
+  }
+});
+
 Vue.config.productionTip = false;
 
 new Vue({

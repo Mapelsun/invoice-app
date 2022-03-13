@@ -1,6 +1,10 @@
 <template>
   <div class="wrapper">
-    <app-invoice-item></app-invoice-item>
+    <app-invoice-item
+      v-for="invoice in invoices"
+      :key="invoice.id"
+      :invoice="invoice"
+    ></app-invoice-item>
   </div>
 </template>
 
@@ -10,6 +14,11 @@ export default {
   name: "invoicesList",
   components: {
     "app-invoice-item": InvoiceItem,
+  },
+  props: {
+    invoices: {
+      type: Array,
+    },
   },
 };
 </script>
