@@ -13,7 +13,7 @@
 
 <script>
 // Main layout components
-import MainSidebar from "@/components/layouts/MainSidebar.vue";
+import MainSidebar from "@/components/layouts/MainSidebar";
 export default {
   name: "homeLayout",
   components: {
