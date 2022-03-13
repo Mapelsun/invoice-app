@@ -2,21 +2,24 @@
   <section class="home">
     <app-invoice-header></app-invoice-header>
     <app-empty-invoice v-if="dataPresent"></app-empty-invoice>
+    <app-invoices-list v-else></app-invoices-list>
   </section>
 </template>
 
 <script>
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
+import InvoicesList from "@/components/invoice/InvoicesList";
 export default {
   name: "invoicesHome",
   components: {
     "app-invoice-header": InvoiceHeader,
     "app-empty-invoice": EmptyInvoice,
+    "app-invoices-list": InvoicesList,
   },
   data() {
     return {
-      dataPresent: true,
+      dataPresent: false,
     };
   },
 };
