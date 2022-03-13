@@ -1,7 +1,7 @@
 <template>
   <header class="heading">
     <div class="heading__left">
-      <h2>Invoices</h2>
+      <h1>Invoices</h1>
       <p>No invoices</p>
     </div>
     <div class="heading__right">
@@ -49,17 +49,7 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 3rem 2rem;
-  &__left {
-    h2 {
-      font-size: 3rem;
-      font-weight: bold;
-      margin-bottom: 0.8rem;
-    }
-
-    p {
-      font-size: 1.2rem;
-    }
-  }
+  margin-bottom: 4rem;
   &__right {
     display: flex;
     align-items: center;
@@ -69,12 +59,6 @@ export default {
       padding: 0.5em;
       border-radius: 50%;
     }
-
-    p {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--clr-white);
-    }
   }
   select {
     appearance: none;
@@ -83,8 +67,6 @@ export default {
     font-size: 1.2rem;
     font-weight: bold;
     font-family: inherit;
-    cursor: inherit;
-    line-height: inherit;
     color: var(--clr-white);
     padding: 1.2em 2em;
     background: url("@/assets/icon-arrow-down.svg");

@@ -6,7 +6,7 @@
       alt="empty illustration"
     />
     <div class="empty__details">
-      <h3>There is nothing here</h3>
+      <h2>There is nothing here</h2>
       <p>
         Create an invoice by clicking the<br />
         <span>New Invoice</span> button to get started
@@ -16,7 +16,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "emptyInvoices",
+};
 </script>
 
 <style lang="scss" scoped>
@@ -30,11 +32,8 @@ export default {};
   }
   &__details {
     text-align: center;
-    h3 {
+    h2 {
       margin-bottom: 2rem;
-    }
-    p {
-      font-size: 1.2rem;
     }
     span {
       font-weight: bold;

@@ -15,7 +15,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: "mainSidebar",
+};
 </script>
 
 <style lang="scss" scoped>
