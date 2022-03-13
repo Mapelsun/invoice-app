@@ -69,6 +69,57 @@ input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
+}
+
+// Custom styles
+h1 {
+  font-family: "Spartan", sans-serif;
+  font-weight: bold;
+  font-size: 3.2rem;
+  line-height: 3.6rem;
+  letter-spacing: 1;
+  margin-bottom: 0.8rem;
+}
+
+h2 {
+  font-family: "Spartan", sans-serif;
+  font-weight: bold;
+  font-size: 2rem;
+  line-height: 2.2rem;
+  letter-spacing: 0.63;
+}
+
+h3 {
+  font-family: "Spartan", sans-serif;
+  font-weight: bold;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.8;
+}
+
+h3.h3-two {
+  font-family: "Spartan", sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.25;
+}
+
+p {
+  font-family: "Spartan", sans-serif;
+  font-weight: medium;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  letter-spacing: 0.25;
+}
+
+p.p-two {
+  font-family: "Spartan", sans-serif;
+  font-weight: medium;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+  letter-spacing: 0.23;
 }
 
 // Vue Transitions
