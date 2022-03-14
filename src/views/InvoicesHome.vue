@@ -16,21 +16,18 @@ import tempData from "@/json/data";
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
 import InvoicesList from "@/components/invoice/InvoicesList";
+import { mapState } from "vuex";
 export default {
   name: "invoicesHome",
   created() {
-    this.invoices = tempData;
+    // api call to get invoices list if it exist
+    this.$store.dispatch("setInvoices", tempData);
   },
+  computed: mapState(["invoices"]),
   components: {
     "app-invoice-header": InvoiceHeader,
     "app-empty-invoice": EmptyInvoice,
     "app-invoices-list": InvoicesList,
-  },
-  data() {
-    return {
-      dataPresent: false,
-      invoices: [],
-    };
   },
 };
 </script>

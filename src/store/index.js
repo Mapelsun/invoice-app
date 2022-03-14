@@ -4,9 +4,19 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    invoices: [],
+  },
   getters: {},
-  mutations: {},
-  actions: {},
+  mutations: {
+    SET_INVOICES(state, payload) {
+      state.invoices = payload;
+    },
+  },
+  actions: {
+    setInvoices(context, payload) {
+      context.commit("SET_INVOICES", payload);
+    },
+  },
   modules: {},
 });
