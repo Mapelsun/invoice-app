@@ -21,7 +21,7 @@
         </select>
       </div>
 
-      <app-button>
+      <app-button type="default">
         <img src="@/assets/icon-plus.svg" alt="plus icon" />
         <p>New Invoice</p>
       </app-button>

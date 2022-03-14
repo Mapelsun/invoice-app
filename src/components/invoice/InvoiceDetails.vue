@@ -10,13 +10,13 @@
         <app-status-pill :stat="invoice.status"></app-status-pill>
       </div>
       <div>
-        <app-button>
+        <app-button type="edit">
           <p>Edit</p>
         </app-button>
-        <app-button>
+        <app-button type="delete">
           <p>Delete</p>
         </app-button>
-        <app-button>
+        <app-button type="default">
           <p>Mark as Paid</p>
         </app-button>
       </div>
