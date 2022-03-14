@@ -33,6 +33,7 @@ export default {
 }
 
 .sidenav {
+  position: fixed;
   grid-area: sidebar;
   min-height: 100%;
   height: 100%;
