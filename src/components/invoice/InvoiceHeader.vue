@@ -21,7 +21,7 @@
         </select>
       </div>
 
-      <app-button type="default">
+      <app-button type="default" @click.native="$emit('openForm')">
         <img src="@/assets/icon-plus.svg" alt="plus icon" />
         <p>New Invoice</p>
       </app-button>
