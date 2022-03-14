@@ -106,7 +106,8 @@ h3.h3-two {
   letter-spacing: 0.25;
 }
 
-p {
+p,
+label {
   font-family: "Spartan", sans-serif;
   font-weight: medium;
   font-size: 1.2rem;
