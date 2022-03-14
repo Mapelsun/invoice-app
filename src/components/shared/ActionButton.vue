@@ -1,7 +1,17 @@
 <template>
   <button
     class="btn"
-    :class="type === 'edit' ? 'edit' : type === 'delete' ? 'delete' : 'default'"
+    :class="
+      type === 'edit'
+        ? 'edit'
+        : type === 'delete'
+        ? 'delete'
+        : type === 'discard'
+        ? 'discard'
+        : type === 'draft'
+        ? 'draft'
+        : 'default'
+    "
   >
     <slot />
   </button>
@@ -48,6 +58,20 @@ export default {
   background: var(--clr-accent-red);
   &:hover {
     background: var(--clr-accent-red-hover);
+  }
+}
+.discard {
+  background: var(--clr-white);
+  color: var(--clr-grey-one);
+  &:hover {
+    background: var(--clr-grey-three);
+  }
+}
+.draft {
+  background: var(--clr-bg-dark-three);
+  color: var(--clr-grey-one);
+  &:hover {
+    background: var(--clr-grey-three);
   }
 }
 </style>
