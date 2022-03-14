@@ -1,5 +1,5 @@
 <template>
-  <div class="inv">
+  <div class="inv" @click="setInvoice(invoice)">
     <p class="inv__id"><span>&#35;</span>{{ invoice.id }}</p>
     <p class="inv__date">Due &nbsp;{{ invoice.paymentDue | formatDate }}</p>
     <p class="inv__name">{{ invoice.clientName }}</p>
@@ -25,6 +25,12 @@ export default {
   props: {
     invoice: {
       type: Object,
+    },
+  },
+  methods: {
+    setInvoice(data) {
+      this.$store.dispatch("setInvoice", data);
+      this.$router.push("/invoice-details");
     },
   },
 };

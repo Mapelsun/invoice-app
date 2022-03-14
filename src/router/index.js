@@ -12,6 +12,14 @@ const routes = [
       layout: "home-layout",
     },
   },
+  {
+    path: "/invoice-details",
+    name: "invoice-details",
+    component: () => import("@/components/invoice/InvoiceDetails.vue"),
+    meta: {
+      layout: "home-layout",
+    },
+  },
 ];
 
 const router = new VueRouter({
