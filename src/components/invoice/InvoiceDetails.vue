@@ -1,9 +1,6 @@
 <template>
   <section class="details">
-    <div class="details__back" @click="$router.go(-1)">
-      <img src="@/assets/icon-arrow-left.svg" alt="arrow left icon" />
-      <p>Go back</p>
-    </div>
+    <app-back-nav></app-back-nav>
     <div class="details__actions">
       <div>
         <p>Status</p>
@@ -27,12 +24,14 @@
 
 <script>
 import { mapState } from "vuex";
+import BackNav from "@/components/shared/BackNav";
 import StatusPill from "@/components/shared/StatusPill";
 import ActionButton from "@/components/shared/ActionButton";
 export default {
   name: "invoiceDetails",
   computed: mapState(["invoice"]),
   components: {
+    "app-back-nav": BackNav,
     "app-status-pill": StatusPill,
     "app-button": ActionButton,
   },
@@ -46,26 +45,7 @@ export default {
   width: min(95%, 90rem);
   margin: 5rem auto;
   min-height: calc(100vh - 10rem);
-  &__back {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    height: 3rem;
-    gap: 2rem;
-    transition: transform 0.5s linear;
 
-    p {
-      font-weight: bold;
-    }
-
-    img {
-      transition: 0.2s linear;
-    }
-
-    &:hover img {
-      transform: translateX(-0.8rem);
-    }
-  }
   &__actions {
     display: flex;
     justify-content: space-between;
