@@ -18,7 +18,7 @@
         </app-button>
       </div>
     </div>
-    <div class="details__info"></div>
+    <app-invoice-info :invoice="invoice"></app-invoice-info>
   </section>
 </template>
 
@@ -27,6 +27,7 @@ import { mapState } from "vuex";
 import BackNav from "@/components/shared/BackNav";
 import StatusPill from "@/components/shared/StatusPill";
 import ActionButton from "@/components/shared/ActionButton";
+import InvoiceInfo from "@/components/invoice/InvoiceInfo";
 export default {
   name: "invoiceDetails",
   computed: mapState(["invoice"]),
@@ -34,6 +35,7 @@ export default {
     "app-back-nav": BackNav,
     "app-status-pill": StatusPill,
     "app-button": ActionButton,
+    "app-invoice-info": InvoiceInfo,
   },
 };
 </script>
@@ -61,8 +63,6 @@ export default {
       align-items: center;
       gap: 1rem;
     }
-  }
-  &__info {
   }
 }
 </style>
