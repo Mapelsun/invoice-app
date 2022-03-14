@@ -40,7 +40,7 @@ export default {
   width: 10rem;
   transition: all 0.3s ease-in-out;
   z-index: 2;
-  background: var(--clr-bg-dark-three);
+  background: var(--clr-bg-dark-four);
   border-top-right-radius: 2.5rem;
   border-bottom-right-radius: 2.5rem;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
