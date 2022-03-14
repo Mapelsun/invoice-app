@@ -34,7 +34,7 @@
           <app-button type="edit" @click.native="showModal = false">
             <p>Cancel</p>
           </app-button>
-          <app-button type="delete">
+          <app-button type="delete" @click.native="deleteItem">
             <p>Delete</p>
           </app-button>
         </div>
@@ -52,7 +52,7 @@ import InvoiceInfo from "@/components/invoice/InvoiceInfo";
 import AppModal from "@/components/widgets/AppModal";
 export default {
   name: "invoiceDetails",
-  computed: mapState(["invoice"]),
+  computed: mapState(["invoices", "invoice"]),
   components: {
     "app-back-nav": BackNav,
     "app-status-pill": StatusPill,
@@ -64,6 +64,16 @@ export default {
     return {
       showModal: false,
     };
+  },
+  methods: {
+    deleteItem() {
+      const filteredInvoices = this.invoices.filter(
+        (item) => item.id !== this.invoice.id
+      );
+      this.$store.dispatch("setFilteredInvoices", filteredInvoices);
+      this.showModal = false;
+      this.$router.go(-1);
+    },
   },
 };
 </script>

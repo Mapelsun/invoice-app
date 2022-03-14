@@ -17,6 +17,9 @@ export default new Vuex.Store({
     SET_INVOICE(state, payload) {
       state.invoice = payload;
     },
+    SET_FILTERED_INVOICES(state, payload) {
+      state.invoices = payload;
+    },
   },
   actions: {
     setInvoices(context, payload) {
@@ -24,6 +27,9 @@ export default new Vuex.Store({
     },
     setInvoice(context, payload) {
       context.commit("SET_INVOICE", payload);
+    },
+    setFilteredInvoices(context, payload) {
+      context.commit("SET_FILTERED_INVOICES", payload);
     },
   },
   modules: {},
