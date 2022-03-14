@@ -2,9 +2,10 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-
-// Importing Dayjs
 import dayjs from "dayjs";
+import Vuelidate from "vuelidate";
+
+Vue.use(Vuelidate);
 
 // Layouts
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
