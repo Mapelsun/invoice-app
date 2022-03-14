@@ -12,11 +12,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import tempData from "@/json/data";
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
 import InvoicesList from "@/components/invoice/InvoicesList";
-import { mapState } from "vuex";
 export default {
   name: "invoicesHome",
   created() {

@@ -2,7 +2,10 @@
   <header class="heading">
     <div class="heading__left">
       <h1>Invoices</h1>
-      <p>No invoices</p>
+      <p v-if="invoices.length > 0">
+        There are {{ invoices.length }} total invoices
+      </p>
+      <p v-else>No invoices</p>
     </div>
     <div class="heading__right">
       <div class="form__group">
@@ -27,8 +30,11 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import ActionButton from "@/components/shared/ActionButton";
 export default {
+  name: "invoicesHeader",
+  computed: mapState(["invoices"]),
   components: {
     "app-button": ActionButton,
   },
