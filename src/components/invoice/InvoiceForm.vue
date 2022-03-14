@@ -1,0 +1,389 @@
+<template>
+  <form class="form">
+    <h3>New Invoice</h3>
+    <div class="sender">
+      <p>Bill From</p>
+      <div class="form__group">
+        <label for="senderAddress" class="form__label">Street Address</label>
+        <input
+          type="text"
+          id="senderAddress"
+          name="senderAddress"
+          class="form__input"
+          v-model.lazy="$v.form.senderAddress.street.$model"
+          :class="{
+            'is-invalid': submitted && $v.form.senderAddress.street.$error,
+          }"
+        />
+        <small
+          class="error"
+          v-if="submitted && !$v.form.senderAddress.street.required"
+          >Street address is required</small
+        >
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label for="senderCity" class="form__label">City</label>
+          <input
+            type="text"
+            id="senderCity"
+            name="senderCity"
+            class="form__input"
+            v-model.lazy="$v.form.senderAddress.city.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.senderAddress.city.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.senderAddress.city.required"
+            >City is required</small
+          >
+        </div>
+        <div class="form__group">
+          <label for="senderPostCode" class="form__label">Post Code</label>
+          <input
+            type="text"
+            id="senderPostCode"
+            name="senderPostCode"
+            class="form__input"
+            v-model.lazy="$v.form.senderAddress.postCode.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.senderAddress.postCode.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.senderAddress.postCode.required"
+            >Post Code is required</small
+          >
+        </div>
+        <div class="form__group">
+          <label for="senderCountry" class="form__label">Country</label>
+          <input
+            type="text"
+            id="senderCountry"
+            name="senderCountry"
+            class="form__input"
+            v-model.lazy="$v.form.senderAddress.country.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.senderAddress.country.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.senderAddress.country.required"
+            >Country is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="receiver">
+      <p>Bill To</p>
+      <div class="form__group">
+        <label for="receiverName" class="form__label">Client's Name</label>
+        <input
+          type="text"
+          id="receiverName"
+          name="receiverName"
+          class="form__input"
+          v-model.lazy="$v.form.clientName.$model"
+          :class="{
+            'is-invalid': submitted && $v.form.clientName.$error,
+          }"
+        />
+        <small class="error" v-if="submitted && !$v.form.clientName.required"
+          >Client's name is required</small
+        >
+      </div>
+      <div class="form__group">
+        <label for="receiverEmail" class="form__label">Client's Email</label>
+        <input
+          type="email"
+          id="receiverEmail"
+          name="receiverEmail"
+          class="form__input"
+          placeholder="e.g. email@example.com"
+          v-model.lazy="$v.form.clientEmail.$model"
+          :class="{
+            'is-invalid': submitted && $v.form.clientEmail.$error,
+          }"
+        />
+        <small class="error" v-if="submitted && !$v.form.clientEmail.required"
+          >Client's email is required</small
+        >
+      </div>
+      <div class="form__group">
+        <label for="receiverAddress" class="form__label">Street Address</label>
+        <input
+          type="text"
+          id="receiverAddress"
+          name="receiverAddress"
+          class="form__input"
+          v-model.lazy="$v.form.clientAddress.street.$model"
+          :class="{
+            'is-invalid': submitted && $v.form.clientAddress.street.$error,
+          }"
+        />
+        <small
+          class="error"
+          v-if="submitted && !$v.form.clientAddress.street.required"
+          >Client's street address is required</small
+        >
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label for="receiverCity" class="form__label">City</label>
+          <input
+            type="text"
+            id="receiverCity"
+            name="receiverCity"
+            class="form__input"
+            v-model.lazy="$v.form.clientAddress.city.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.clientAddress.city.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.clientAddress.city.required"
+            >Client's city is required</small
+          >
+        </div>
+        <div class="form__group">
+          <label for="receiverPostCode" class="form__label">Post Code</label>
+          <input
+            type="text"
+            id="receiverPostCode"
+            name="receiverPostCode"
+            class="form__input"
+            v-model.lazy="$v.form.clientAddress.postCode.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.clientAddress.postCode.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.clientAddress.postCode.required"
+            >Client's Post Code is required</small
+          >
+        </div>
+        <div class="form__group">
+          <label for="receiverCountry" class="form__label">Country</label>
+          <input
+            type="text"
+            id="receiverCountry"
+            name="receiverCountry"
+            class="form__input"
+            v-model.lazy="$v.form.clientAddress.country.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.clientAddress.country.$error,
+            }"
+          />
+          <small
+            class="error"
+            v-if="submitted && !$v.form.clientAddress.country.required"
+            >Client's country is required</small
+          >
+        </div>
+      </div>
+      <div class="form__row">
+        <div class="form__group">
+          <label for="invoiceDate" class="form__label">Invoice Date</label>
+          <input
+            type="date"
+            id="invoiceDate"
+            name="invoiceDate"
+            class="form__input"
+            v-model.lazy="$v.form.createdAt.$model"
+            :class="{
+              'is-invalid': submitted && $v.form.createdAt.$error,
+            }"
+          />
+          <small class="error" v-if="submitted && !$v.form.createdAt.required"
+            >Invoice date is required</small
+          >
+        </div>
+        <div class="form__group">
+          <label for="paymentTerms" class="form__label">Payment Terms</label>
+          <select
+            class="form__input"
+            v-model.lazy="$v.form.paymentTerms.$model"
+            name="paymentTerms"
+            id="paymentTerms"
+            :class="{
+              'is-invalid': submitted && $v.form.paymentTerms.$error,
+            }"
+          >
+            <option disabled value="">Select Payment Terms</option>
+            <option v-for="(data, index) in terms" :key="index" :value="data">
+              Net {{ data }} day{{ data !== 1 ? "s" : "" }}
+            </option>
+          </select>
+          <small
+            class="error"
+            v-if="submitted && !$v.form.paymentTerms.required"
+            >Payment terms is required</small
+          >
+        </div>
+      </div>
+      <div class="form__group">
+        <label for="description" class="form__label">Project Description</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          class="form__input"
+          placeholder="e.g. Graphic Design Service"
+          v-model.lazy="$v.form.description.$model"
+          :class="{
+            'is-invalid': submitted && $v.form.description.$error,
+          }"
+        />
+        <small class="error" v-if="submitted && !$v.form.description.required"
+          >Description is required</small
+        >
+      </div>
+    </div>
+
+    <div class="lists"></div>
+  </form>
+</template>
+
+<script>
+import { required, email, numeric } from "vuelidate/lib/validators";
+export default {
+  name: "invoiceForm",
+  data() {
+    return {
+      submitted: false,
+      form: {
+        id: "",
+        createdAt: "",
+        paymentDue: "",
+        description: "",
+        paymentTerms: 1,
+        clientName: "",
+        clientEmail: "",
+        status: "",
+        senderAddress: {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+        clientAddress: {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+        items: [
+          {
+            name: "",
+            quantity: 1,
+            price: 0,
+            total: 0,
+          },
+        ],
+        total: 0,
+      },
+      terms: [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+      ],
+    };
+  },
+  validations: {
+    form: {
+      id: "",
+      createdAt: { required },
+      paymentDue: { required },
+      description: { required },
+      paymentTerms: { required, numeric },
+      clientName: { required },
+      clientEmail: { required, email },
+      status: { required },
+      senderAddress: {
+        street: { required },
+        city: { required },
+        postCode: { required },
+        country: { required },
+      },
+      clientAddress: {
+        street: { required },
+        city: { required },
+        postCode: { required },
+        country: { required },
+      },
+      items: [
+        {
+          name: { required },
+          quantity: { required, numeric },
+          price: { required, numeric },
+          total: { required, numeric },
+        },
+      ],
+      total: { required, numeric },
+    },
+  },
+  methods: {
+    submitForm() {
+      this.submitted = true;
+
+      this.$v.form.$touch();
+
+      if (this.$v.form.$invalid) {
+        return;
+      }
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.form {
+  margin-right: 3rem;
+  h3 {
+    margin-bottom: 4rem;
+  }
+  p {
+    color: var(--clr-accent-purple);
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  &__group {
+    margin-bottom: 1.5rem;
+  }
+  &__label {
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  &__input {
+    width: 100%;
+    border: none;
+    background: var(--clr-bg-dark-four);
+    border-radius: 0.5rem;
+    font-size: normal;
+    font-weight: normal;
+    padding: 1.1em;
+    outline: none;
+    color: var(--var-white);
+    font-family: "Spartan", sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.25;
+  }
+  &__row {
+    margin-bottom: 3rem;
+    width: 100%;
+    display: flex;
+    gap: 1.5rem;
+    & > * {
+      flex: 1;
+    }
+  }
+}
+</style>
