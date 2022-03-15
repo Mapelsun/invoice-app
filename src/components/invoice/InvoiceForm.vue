@@ -1,5 +1,5 @@
 <template>
-  <form class="form">
+  <form class="form" @submit.prevent="submitForm">
     <h3>New Invoice</h3>
     <div class="sender">
       <p>Bill From</p>
@@ -255,7 +255,11 @@
         <p>Price</p>
         <p>Total</p>
       </div>
-      <div class="lists__group">
+      <div
+        class="lists__group"
+        v-for="(item, index) in form.items"
+        :key="index"
+      >
         <div class="form__group">
           <label for="itemName" class="form__label">
             <input
@@ -263,7 +267,7 @@
               id="itemName"
               name="itemName"
               class="form__input"
-              v-model.lazy="form.items.name"
+              v-model.lazy="item.name"
             />
           </label>
         </div>
@@ -274,7 +278,7 @@
               id="itemQuantity"
               name="itemQuantity"
               class="form__input"
-              v-model.lazy="form.items.quantity"
+              v-model.number.lazy="item.quantity"
             />
           </label>
         </div>
@@ -285,7 +289,7 @@
               id="itemPrice"
               name="itemPrice"
               class="form__input"
-              v-model.lazy="form.items.price"
+              v-model.number.lazy="item.price"
             />
           </label>
         </div>
@@ -297,17 +301,17 @@
               name="itemTotal"
               class="form__input no-bg"
               disabled
-              v-model.lazy="form.items.total"
+              v-model.number.lazy="item.total"
             />
           </label>
         </div>
-        <img src="@/assets/icon-delete.svg" alt="delete icon" />
+        <img
+          src="@/assets/icon-delete.svg"
+          alt="delete icon"
+          @click="removeItem(item)"
+        />
       </div>
-      <app-button
-        class="lists__btn"
-        type="edit"
-        @click.native="showModal = true"
-      >
+      <app-button class="lists__btn" type="edit" @click.native="addItem">
         <img src="@/assets/icon-plus.svg" alt="plus icon" />
         <p>Add New Item</p>
       </app-button>
@@ -347,14 +351,7 @@ export default {
           postCode: "",
           country: "",
         },
-        items: [
-          {
-            name: "",
-            quantity: 1,
-            price: 0,
-            total: 0,
-          },
-        ],
+        items: [],
         total: 0,
       },
       terms: [
@@ -397,14 +394,31 @@ export default {
     },
   },
   methods: {
-    submitForm() {
-      this.submitted = true;
+    addItem() {
+      const checkEmptyLines = this.form.items.filter(
+        (item) => item.name === null
+      );
 
-      this.$v.form.$touch();
-
-      if (this.$v.form.$invalid) {
+      if (checkEmptyLines.length >= 1 && this.form.items.length > 0) {
         return;
       }
+
+      this.form.items.push({
+        name: null,
+        quantity: null,
+        price: null,
+        total: null,
+      });
+    },
+    removeItem(val) {
+      this.form.items = this.form.items.filter((item) => item !== val);
+    },
+    submitForm() {
+      // this.submitted = true;
+      // this.$v.form.$touch();
+      // if (this.$v.form.$invalid) {
+      //   return;
+      // }
     },
   },
 };
