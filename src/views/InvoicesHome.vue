@@ -18,8 +18,8 @@
 </template>
 
 <script>
+import api from "@/api/api.js";
 import { mapState } from "vuex";
-import tempData from "@/json/data";
 import InvoiceHeader from "@/components/invoice/InvoiceHeader";
 import EmptyInvoice from "@/components/invoice/EmptyInvoice";
 import InvoicesList from "@/components/invoice/InvoicesList";
@@ -27,8 +27,12 @@ import CreateInvoice from "@/components/invoice/CreateInvoice";
 export default {
   name: "invoicesHome",
   created() {
-    // api call to get invoices list if it exist
-    this.$store.dispatch("setInvoices", tempData);
+    api
+      .getInvoices()
+      .then((response) => {
+        this.$store.dispatch("setInvoices", response.data);
+      })
+      .catch((err) => console.log(err));
   },
   computed: mapState(["invoices"]),
   components: {
