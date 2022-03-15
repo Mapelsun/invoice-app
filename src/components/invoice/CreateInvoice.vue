@@ -2,7 +2,7 @@
   <transition name="create">
     <div class="create-mask">
       <div class="create-container">
-        <app-invoice-form></app-invoice-form>
+        <app-invoice-form ref="userForm"></app-invoice-form>
       </div>
       <div class="create-btns">
         <app-button
@@ -12,10 +12,10 @@
         >
           <p>Discard</p>
         </app-button>
-        <app-button type="draft" @click.native="showModal = true">
+        <app-button type="draft" @click.native="draftInvoiceFrom">
           <p>Save as Draft</p>
         </app-button>
-        <app-button type="default">
+        <app-button type="default" @click.native="saveInvoiceFrom">
           <p>Save and Send</p>
         </app-button>
       </div>
@@ -31,6 +31,14 @@ export default {
   components: {
     "app-button": ActionButton,
     "app-invoice-form": InvoiceForm,
+  },
+  mounted() {
+    // console.log(this.$refs.userForm.submitForm());
+  },
+
+  methods: {
+    draftInvoiceFrom() {},
+    saveInvoiceFrom() {},
   },
 };
 </script>
