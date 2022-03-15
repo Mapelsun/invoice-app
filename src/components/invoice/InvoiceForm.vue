@@ -315,6 +315,9 @@
         <img src="@/assets/icon-plus.svg" alt="plus icon" />
         <p>Add New Item</p>
       </app-button>
+      <small class="error" v-if="submitted && form.items.length === 0"
+        >At least 1 item is required</small
+      >
     </div>
   </form>
 </template>
@@ -335,7 +338,7 @@ export default {
         createdAt: "",
         paymentDue: "",
         description: "",
-        paymentTerms: 1,
+        paymentTerms: null,
         clientName: "",
         clientEmail: "",
         status: "",
@@ -414,11 +417,11 @@ export default {
       this.form.items = this.form.items.filter((item) => item !== val);
     },
     submitForm() {
-      // this.submitted = true;
-      // this.$v.form.$touch();
-      // if (this.$v.form.$invalid) {
-      //   return;
-      // }
+      this.submitted = true;
+      this.$v.form.$touch();
+      if (this.$v.form.$invalid) {
+        return;
+      }
     },
   },
 };
@@ -426,6 +429,7 @@ export default {
 
 <style lang="scss" scoped>
 .form {
+  padding: 1rem;
   margin-right: 3rem;
   h3 {
     margin-bottom: 4rem;
@@ -457,6 +461,10 @@ export default {
     font-size: 1.2rem;
     line-height: 1.5rem;
     letter-spacing: 0.25;
+    &:active,
+    &:focus {
+      outline: 2px solid var(--clr-accent-purple);
+    }
   }
   &__row {
     margin-bottom: 3rem;
@@ -515,5 +523,17 @@ export default {
   .no-bg {
     background: none;
   }
+}
+
+// Validations
+.error {
+  color: var(--clr-accent-red);
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.is-invalid {
+  border: 1px solid var(--clr-accent-red);
 }
 </style>
