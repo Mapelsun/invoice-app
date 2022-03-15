@@ -6,11 +6,14 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "start:server": "json-server --watch src/data/db.json"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "dayjs": "^1.10.8",
+    "json-server": "^0.17.0",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
     "vuelidate": "^0.7.7",
