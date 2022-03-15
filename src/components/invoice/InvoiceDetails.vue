@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import api from "@/api/api.js";
 import { mapState } from "vuex";
 import BackNav from "@/components/shared/BackNav";
 import StatusPill from "@/components/shared/StatusPill";
@@ -67,12 +68,14 @@ export default {
   },
   methods: {
     deleteItem() {
-      const filteredInvoices = this.invoices.filter(
-        (item) => item.id !== this.invoice.id
-      );
-      this.$store.dispatch("setFilteredInvoices", filteredInvoices);
-      this.showModal = false;
-      this.$router.go(-1);
+      api
+        .deleteInvoice(this.invoice.id)
+        .then((response) => {
+          console.log(response);
+          this.showModal = false;
+          this.$router.go(-1);
+        })
+        .catch((err) => console.log(err));
     },
   },
 };
