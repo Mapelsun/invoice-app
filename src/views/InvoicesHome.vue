@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      showCreateInvoice: true,
+      showCreateInvoice: false,
     };
   },
 };

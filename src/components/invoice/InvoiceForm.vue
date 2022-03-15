@@ -247,14 +247,82 @@
       </div>
     </div>
 
-    <div class="lists"></div>
+    <div class="lists">
+      <h2 class="lists__header">Item List</h2>
+      <div class="lists__headings">
+        <p>Item name</p>
+        <p>Qty.</p>
+        <p>Price</p>
+        <p>Total</p>
+      </div>
+      <div class="lists__group">
+        <div class="form__group">
+          <label for="itemName" class="form__label">
+            <input
+              type="text"
+              id="itemName"
+              name="itemName"
+              class="form__input"
+              v-model.lazy="form.items.name"
+            />
+          </label>
+        </div>
+        <div class="form__group">
+          <label for="itemQuantity" class="form__label">
+            <input
+              type="text"
+              id="itemQuantity"
+              name="itemQuantity"
+              class="form__input"
+              v-model.lazy="form.items.quantity"
+            />
+          </label>
+        </div>
+        <div class="form__group">
+          <label for="itemPrice" class="form__label">
+            <input
+              type="text"
+              id="itemPrice"
+              name="itemPrice"
+              class="form__input"
+              v-model.lazy="form.items.price"
+            />
+          </label>
+        </div>
+        <div class="form__group">
+          <label for="itemTotal" class="form__label">
+            <input
+              type="text"
+              id="itemTotal"
+              name="itemTotal"
+              class="form__input no-bg"
+              disabled
+              v-model.lazy="form.items.total"
+            />
+          </label>
+        </div>
+        <img src="@/assets/icon-delete.svg" alt="delete icon" />
+      </div>
+      <app-button
+        class="lists__btn"
+        type="edit"
+        @click.native="showModal = true"
+      >
+        <img src="@/assets/icon-plus.svg" alt="plus icon" />
+        <p>Add New Item</p>
+      </app-button>
+    </div>
   </form>
 </template>
 
 <script>
+import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
 export default {
   name: "invoiceForm",
+  components: {
+    "app-button": ActionButton,
+  },
   data() {
     return {
       submitted: false,
@@ -350,7 +418,6 @@ export default {
   }
   p {
     color: var(--clr-accent-purple);
-    font-weight: bold;
     margin-bottom: 2rem;
   }
   &__group {
@@ -359,6 +426,7 @@ export default {
   &__label {
     display: block;
     margin-bottom: 0.3rem;
+    color: var(--clr-grey-three);
   }
   &__input {
     width: 100%;
@@ -384,6 +452,54 @@ export default {
     & > * {
       flex: 1;
     }
+  }
+  .receiver {
+    margin-bottom: 3rem;
+  }
+  .lists {
+    &__headings,
+    &__group {
+      display: grid;
+      grid-template-columns: 0.4fr 0.1fr repeat(2, 0.2fr) 0.1fr;
+      align-items: center;
+      gap: 1rem;
+    }
+    &__header {
+      color: var(--clr-grey-one);
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    &__headings {
+      margin-bottom: 0.8rem;
+      p {
+        color: var(--clr-grey-three);
+        margin-bottom: 0rem;
+        font-weight: medium;
+      }
+    }
+    &__group {
+      img {
+        cursor: pointer;
+        margin-bottom: 1.5rem;
+      }
+    }
+    &__btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      p {
+        color: var(--clr-white);
+        margin-bottom: 0rem;
+        font-size: 1rem;
+      }
+      img {
+        fill: var(--clr-white);
+      }
+    }
+  }
+  .no-bg {
+    background: none;
   }
 }
 </style>
