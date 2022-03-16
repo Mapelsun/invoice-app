@@ -13,6 +13,7 @@
           class="form__input"
           v-model.lazy="form.searchFilter"
           name="searchFilter"
+          @change="toggleFilter"
         >
           <option disabled value="">Filter by status</option>
           <option v-for="(data, index) in filters" :key="index" :value="data">
@@ -45,6 +46,15 @@ export default {
       },
       filters: ["Paid", "Pending", "Draft"],
     };
+  },
+  methods: {
+    toggleFilter(e) {
+      const query = e.target.value;
+      const filteredArr = this.invoices.filter(
+        (invoice) => invoice.status === query.toLowerCase()
+      );
+      this.$emit("filteredInvoices", filteredArr);
+    },
   },
 };
 </script>

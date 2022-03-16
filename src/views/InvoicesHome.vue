@@ -2,11 +2,12 @@
   <section class="home">
     <app-invoice-header
       @openForm="showCreateInvoice = true"
+      @filteredInvoices="setFilteredInvoices"
     ></app-invoice-header>
     <div>
       <app-invoices-list
         v-if="invoices.length > 0"
-        :invoices="invoices"
+        :invoices="displayedInvoices"
       ></app-invoices-list>
       <app-empty-invoice v-else></app-empty-invoice>
     </div>
@@ -31,6 +32,7 @@ export default {
       .getInvoices()
       .then((response) => {
         this.$store.dispatch("setInvoices", response.data);
+        this.displayedInvoices = response.data;
       })
       .catch((err) => console.log(err));
   },
@@ -44,7 +46,13 @@ export default {
   data() {
     return {
       showCreateInvoice: false,
+      displayedInvoices: [],
     };
+  },
+  methods: {
+    setFilteredInvoices(value) {
+      this.displayedInvoices = value;
+    },
   },
 };
 </script>
