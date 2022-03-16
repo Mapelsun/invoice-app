@@ -2,7 +2,10 @@
   <transition name="create">
     <div class="create-mask">
       <div class="create-container">
-        <app-invoice-form ref="userForm"></app-invoice-form>
+        <app-invoice-form
+          ref="userForm"
+          @close="$emit('closeForm')"
+        ></app-invoice-form>
       </div>
       <div class="create-btns">
         <app-button

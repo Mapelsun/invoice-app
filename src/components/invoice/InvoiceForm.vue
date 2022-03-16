@@ -323,11 +323,13 @@
 </template>
 
 <script>
+import api from "@/api/api.js";
 import dayjs from "dayjs";
 import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
 export default {
   name: "invoiceForm",
+  emits: ["close"],
   components: {
     "app-button": ActionButton,
   },
@@ -454,6 +456,15 @@ export default {
         (accumulator, current) => accumulator + current.total,
         0
       );
+    },
+    addInvoice(data) {
+      api
+        .addInvoice(data)
+        .then((response) => {
+          console.log(response);
+          this.$emit("close");
+        })
+        .catch((err) => console.log(err));
     },
     submitForm(type) {
       if (type === "draft") {
