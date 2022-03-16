@@ -453,6 +453,12 @@ export default {
       }
       return modifiedStatus;
     },
+    calcTotal(arr) {
+      return arr.reduce(
+        (accumulator, current) => accumulator + current.total,
+        0
+      );
+    },
     submitForm(type) {
       if (type === "draft") {
         // console.log("draft clicked");
