@@ -17,6 +17,7 @@
           <app-button
             type="default"
             v-if="invoice.status !== 'paid' && invoice.status !== 'draft'"
+            @click.native="markAsPaid"
           >
             <p>Mark as Paid</p>
           </app-button>
@@ -73,6 +74,17 @@ export default {
     deleteItem() {
       api
         .deleteInvoice(this.invoice.id)
+        .then((response) => {
+          console.log(response);
+          this.showModal = false;
+          this.$router.go(-1);
+        })
+        .catch((err) => console.log(err));
+    },
+    markAsPaid() {
+      let data = { status: "paid" };
+      api
+        .markInvoiceAsPaid(this.invoice.id, data)
         .then((response) => {
           console.log(response);
           this.showModal = false;
