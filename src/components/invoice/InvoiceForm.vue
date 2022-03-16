@@ -431,9 +431,12 @@ export default {
       return texts + digits;
     },
     addDays(presentDate, days) {
-      const date = new Date(presentDate);
-      const futureDate = new Date(date.setDate(date.getDate() + days));
-      return dayjs(futureDate).format("YYYY-MM-DD");
+      if (presentDate !== "") {
+        const date = new Date(presentDate);
+        const futureDate = new Date(date.setDate(date.getDate() + days));
+        return dayjs(futureDate).format("YYYY-MM-DD");
+      }
+      return "";
     },
     getStatus(type) {
       let modifiedStatus;
@@ -451,10 +454,13 @@ export default {
       return modifiedStatus;
     },
     calcTotal(arr) {
-      return arr.reduce(
-        (accumulator, current) => accumulator + current.total,
-        0
-      );
+      if (arr.length !== 0) {
+        return arr.reduce(
+          (accumulator, current) => accumulator + current.total,
+          0
+        );
+      }
+      return 0;
     },
     addInvoice(data) {
       api
@@ -471,13 +477,11 @@ export default {
         const payload = {
           ...this.form,
           id: this.generateId(),
-          paymentDue:
-            this.addDays(this.form.createdAt, this.form.paymentTerms) || "",
+          paymentDue: this.addDays(this.form.createdAt, this.form.paymentTerms),
           status: this.getStatus(type),
-          total: +this.calcTotal(this.form.items) || "",
+          total: +this.calcTotal(this.form.items),
         };
 
-        console.log("draft-form-data", payload);
         this.addInvoice(payload);
       } else if (type === "send") {
         this.submitted = true;
@@ -494,7 +498,6 @@ export default {
           total: +this.calcTotal(this.form.items),
         };
 
-        console.table("save-form-data", payload);
         this.addInvoice(payload);
       }
     },

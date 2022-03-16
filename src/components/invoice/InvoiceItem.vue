@@ -1,8 +1,14 @@
 <template>
   <div class="inv" @click="setInvoice(invoice)">
     <p class="inv__id"><span>&#35;</span>{{ invoice.id }}</p>
-    <p class="inv__date">Due &nbsp;{{ invoice.paymentDue | formatDate }}</p>
-    <p class="inv__name">{{ invoice.clientName }}</p>
+    <p class="inv__date">
+      {{ invoice.paymentDue ? "Due" : "--" }} &nbsp;{{
+        invoice.paymentDue | formatDate
+      }}
+    </p>
+    <p class="inv__name">
+      {{ invoice.clientName ? invoice.clientName : "--" }}
+    </p>
     <p class="inv__price">
       <span>&#163;</span>{{ invoice.total | formatAmount }}
     </p>
