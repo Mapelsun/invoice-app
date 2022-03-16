@@ -432,7 +432,7 @@ export default {
     addDays(presentDate, days) {
       const date = new Date(presentDate);
       const futureDate = new Date(date.setDate(date.getDate() + days));
-      return dayjs(futureDate).format("YYYY-MMM-DD");
+      return dayjs(futureDate).format("YYYY-MM-DD");
     },
     getStatus(type) {
       let modifiedStatus;
@@ -482,6 +482,7 @@ export default {
         };
 
         console.log("save-form-data", payload);
+        console.table("save-form-data", payload);
       }
     },
   },
