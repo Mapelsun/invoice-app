@@ -438,6 +438,21 @@ export default {
       const futureDate = new Date(date.setDate(date.getDate() + days));
       return dayjs(futureDate).format("YYYY-MMM-DD");
     },
+    getStatus(status) {
+      let modifiedStatus;
+      switch (status) {
+        case "draft":
+          modifiedStatus = "draft";
+          break;
+        case "send":
+          modifiedStatus = "pending";
+          break;
+        case "done":
+          modifiedStatus = "paid";
+          break;
+      }
+      return modifiedStatus;
+    },
     submitForm(type) {
       if (type === "draft") {
         // console.log("draft clicked");
