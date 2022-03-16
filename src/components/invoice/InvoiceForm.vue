@@ -335,14 +335,11 @@ export default {
     return {
       submitted: false,
       form: {
-        // id: "",
         createdAt: "",
-        // paymentDue: "",
         description: "",
         paymentTerms: "",
         clientName: "",
         clientEmail: "",
-        // status: "",
         senderAddress: {
           street: "",
           city: "",
@@ -356,7 +353,6 @@ export default {
           country: "",
         },
         items: [],
-        // total: 0,
       },
       terms: [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -438,9 +434,9 @@ export default {
       const futureDate = new Date(date.setDate(date.getDate() + days));
       return dayjs(futureDate).format("YYYY-MMM-DD");
     },
-    getStatus(status) {
+    getStatus(type) {
       let modifiedStatus;
-      switch (status) {
+      switch (type) {
         case "draft":
           modifiedStatus = "draft";
           break;
@@ -461,15 +457,31 @@ export default {
     },
     submitForm(type) {
       if (type === "draft") {
-        // console.log("draft clicked");
+        const payload = {
+          ...this.form,
+          id: this.generateId(),
+          paymentDue: "",
+          status: this.getStatus(type),
+          total: "",
+        };
+
+        console.log("draft-form-data", payload);
       } else if (type === "send") {
-        // console.log("save clicked");
         this.submitted = true;
         this.$v.form.$touch();
         if (this.$v.form.$invalid) {
           return;
         }
-        console.log("form-data", this.form);
+
+        const payload = {
+          ...this.form,
+          id: this.generateId(),
+          paymentDue: this.addDays(this.form.createdAt, this.form.paymentTerms),
+          status: this.getStatus(type),
+          total: +this.calcTotal(this.form.items),
+        };
+
+        console.log("save-form-data", payload);
       }
     },
   },
