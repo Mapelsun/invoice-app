@@ -1,6 +1,6 @@
 <template>
   <form class="form" @submit.prevent="submitForm">
-    <h3>New Invoice</h3>
+    <h3>Edit <span>&#35;</span>{{ invoice.id }}</h3>
     <div class="sender">
       <p>Bill From</p>
       <div class="form__group">
@@ -525,6 +525,10 @@ export default {
   margin-right: 3rem;
   h3 {
     margin-bottom: 4rem;
+    span {
+      font-size: 1.5rem;
+      color: var(--clr-grey-two);
+    }
   }
   p {
     color: var(--clr-accent-purple);
