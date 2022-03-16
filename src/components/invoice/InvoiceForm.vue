@@ -471,9 +471,10 @@ export default {
         const payload = {
           ...this.form,
           id: this.generateId(),
-          paymentDue: "",
+          paymentDue:
+            this.addDays(this.form.createdAt, this.form.paymentTerms) || "",
           status: this.getStatus(type),
-          total: "",
+          total: +this.calcTotal(this.form.items) || "",
         };
 
         console.log("draft-form-data", payload);

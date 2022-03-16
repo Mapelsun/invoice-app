@@ -8,13 +8,16 @@
           <app-status-pill :stat="invoice.status"></app-status-pill>
         </div>
         <div>
-          <app-button type="edit">
+          <app-button type="edit" v-if="invoice.status === 'draft'">
             <p>Edit</p>
           </app-button>
           <app-button type="delete" @click.native="showModal = true">
             <p>Delete</p>
           </app-button>
-          <app-button type="default">
+          <app-button
+            type="default"
+            v-if="invoice.status !== 'paid' && invoice.status !== 'draft'"
+          >
             <p>Mark as Paid</p>
           </app-button>
         </div>
