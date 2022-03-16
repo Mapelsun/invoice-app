@@ -17,6 +17,11 @@ export default {
     let url = config.baseUrl + `/invoices/${id}`;
     return axios({ method, url });
   },
+  editInvoice: (id, data) => {
+    let method = "put";
+    let url = config.baseUrl + `/invoices/${id}`;
+    return axios({ method, url, data });
+  },
   markInvoiceAsPaid: (id, data) => {
     let method = "patch";
     let url = config.baseUrl + `/invoices/${id}`;
