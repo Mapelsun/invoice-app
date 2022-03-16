@@ -8,7 +8,11 @@
           <app-status-pill :stat="invoice.status"></app-status-pill>
         </div>
         <div>
-          <app-button type="edit" v-if="invoice.status === 'draft'">
+          <app-button
+            type="edit"
+            v-if="invoice.status === 'draft'"
+            @click.native="showEditInvoice = true"
+          >
             <p>Edit</p>
           </app-button>
           <app-button type="delete" @click.native="showModal = true">
@@ -44,6 +48,10 @@
         </div>
       </div>
     </app-modal>
+    <app-edit-invoice
+      v-if="showEditInvoice"
+      @closeForm="showEditInvoice = false"
+    ></app-edit-invoice>
   </div>
 </template>
 
@@ -55,6 +63,7 @@ import StatusPill from "@/components/shared/StatusPill";
 import ActionButton from "@/components/shared/ActionButton";
 import InvoiceInfo from "@/components/invoice/InvoiceInfo";
 import AppModal from "@/components/widgets/AppModal";
+import EditInvoice from "@/components/invoice/EditInvoice";
 export default {
   name: "invoiceDetails",
   computed: mapState(["invoices", "invoice"]),
@@ -64,10 +73,12 @@ export default {
     "app-button": ActionButton,
     "app-invoice-info": InvoiceInfo,
     "app-modal": AppModal,
+    "app-edit-invoice": EditInvoice,
   },
   data() {
     return {
       showModal: false,
+      showEditInvoice: false,
     };
   },
   methods: {
