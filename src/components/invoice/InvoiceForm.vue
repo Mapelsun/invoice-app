@@ -440,13 +440,18 @@ export default {
       const futureDate = new Date(date.setDate(date.getDate() + days));
       return dayjs(futureDate).format("YYYY-MMM-DD");
     },
-    submitForm() {
-      this.submitted = true;
-      this.$v.form.$touch();
-      if (this.$v.form.$invalid) {
-        return;
+    submitForm(type) {
+      if (type === "draft") {
+        // console.log("draft clicked");
+      } else if (type === "send") {
+        // console.log("save clicked");
+        this.submitted = true;
+        this.$v.form.$touch();
+        if (this.$v.form.$invalid) {
+          return;
+        }
+        console.log("form-data", this.form);
       }
-      console.log("form-data", this.form);
     },
   },
 };

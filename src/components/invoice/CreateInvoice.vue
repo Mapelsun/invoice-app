@@ -32,16 +32,12 @@ export default {
     "app-button": ActionButton,
     "app-invoice-form": InvoiceForm,
   },
-  mounted() {
-    // console.log(this.$refs.userForm.submitForm());
-  },
-
   methods: {
     draftInvoiceFrom() {
-      this.$refs.userForm.submitForm();
+      this.$refs.userForm.submitForm("draft");
     },
     saveInvoiceFrom() {
-      this.$refs.userForm.submitForm();
+      this.$refs.userForm.submitForm("send");
     },
   },
 };
