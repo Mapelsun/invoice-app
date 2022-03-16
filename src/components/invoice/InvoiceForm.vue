@@ -473,15 +473,15 @@ export default {
         .catch((err) => console.log(err));
     },
     submitForm(type) {
-      if (type === "draft") {
-        const payload = {
-          ...this.form,
-          id: this.generateId(),
-          paymentDue: this.addDays(this.form.createdAt, this.form.paymentTerms),
-          status: this.getStatus(type),
-          total: +this.calcTotal(this.form.items),
-        };
+      const payload = {
+        ...this.form,
+        id: this.generateId(),
+        paymentDue: this.addDays(this.form.createdAt, this.form.paymentTerms),
+        status: this.getStatus(type),
+        total: +this.calcTotal(this.form.items),
+      };
 
+      if (type === "draft") {
         this.addInvoice(payload);
       } else if (type === "send") {
         this.submitted = true;
@@ -489,15 +489,6 @@ export default {
         if (this.$v.form.$invalid) {
           return;
         }
-
-        const payload = {
-          ...this.form,
-          id: this.generateId(),
-          paymentDue: this.addDays(this.form.createdAt, this.form.paymentTerms),
-          status: this.getStatus(type),
-          total: +this.calcTotal(this.form.items),
-        };
-
         this.addInvoice(payload);
       }
     },
