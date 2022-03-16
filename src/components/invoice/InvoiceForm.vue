@@ -247,7 +247,7 @@
       </div>
     </div>
 
-    <div class="lists">
+    <!-- <div class="lists">
       <h2 class="lists__header">Item List</h2>
       <div class="lists__headings">
         <p>Item name</p>
@@ -318,17 +318,17 @@
       <small class="error" v-if="submitted && form.items.length === 0"
         >At least 1 item is required</small
       >
-    </div>
+    </div> -->
   </form>
 </template>
 
 <script>
-import ActionButton from "@/components/shared/ActionButton";
+// import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
 export default {
   name: "invoiceForm",
   components: {
-    "app-button": ActionButton,
+    // "app-button": ActionButton,
   },
   data() {
     return {
@@ -338,7 +338,7 @@ export default {
         createdAt: "",
         paymentDue: "",
         description: "",
-        paymentTerms: null,
+        paymentTerms: "",
         clientName: "",
         clientEmail: "",
         status: "",
@@ -365,7 +365,6 @@ export default {
   },
   validations: {
     form: {
-      id: "",
       createdAt: { required },
       paymentDue: { required },
       description: { required },
@@ -385,15 +384,15 @@ export default {
         postCode: { required },
         country: { required },
       },
-      items: [
-        {
-          name: { required },
-          quantity: { required, numeric },
-          price: { required, numeric },
-          total: { required, numeric },
-        },
-      ],
-      total: { required, numeric },
+      // items: [
+      //   {
+      //     name: { required },
+      //     quantity: { required, numeric },
+      //     price: { required, numeric },
+      //     total: { required, numeric },
+      //   },
+      // ],
+      // total: { required, numeric },
     },
   },
   methods: {
@@ -422,6 +421,7 @@ export default {
       if (this.$v.form.$invalid) {
         return;
       }
+      console.log("form-data", this.form);
     },
   },
 };

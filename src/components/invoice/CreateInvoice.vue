@@ -37,8 +37,12 @@ export default {
   },
 
   methods: {
-    draftInvoiceFrom() {},
-    saveInvoiceFrom() {},
+    draftInvoiceFrom() {
+      this.$refs.userForm.submitForm();
+    },
+    saveInvoiceFrom() {
+      this.$refs.userForm.submitForm();
+    },
   },
 };
 </script>
