@@ -2,8 +2,8 @@
   <header class="heading">
     <div class="heading__left">
       <h1>Invoices</h1>
-      <p v-if="invoices.length > 0">
-        There are {{ invoices.length }} total invoices
+      <p v-if="invoiceLength > 0">
+        There are {{ invoiceLength }} total invoices
       </p>
       <p v-else>No invoices</p>
     </div>
@@ -36,6 +36,11 @@ import ActionButton from "@/components/shared/ActionButton";
 export default {
   name: "invoicesHeader",
   computed: mapState(["invoices"]),
+  props: {
+    invoiceLength: {
+      type: Number,
+    },
+  },
   components: {
     "app-button": ActionButton,
   },
@@ -44,16 +49,20 @@ export default {
       form: {
         searchFilter: "",
       },
-      filters: ["Paid", "Pending", "Draft"],
+      filters: ["Paid", "Pending", "Draft", "All"],
     };
   },
   methods: {
     toggleFilter(e) {
       const query = e.target.value;
-      const filteredArr = this.invoices.filter(
-        (invoice) => invoice.status === query.toLowerCase()
-      );
-      this.$emit("filteredInvoices", filteredArr);
+      if (query === "All") {
+        this.$emit("filteredInvoices", this.invoices);
+      } else {
+        const filteredArr = this.invoices.filter(
+          (invoice) => invoice.status === query.toLowerCase()
+        );
+        this.$emit("filteredInvoices", filteredArr);
+      }
     },
   },
 };

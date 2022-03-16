@@ -3,6 +3,7 @@
     <app-invoice-header
       @openForm="showCreateInvoice = true"
       @filteredInvoices="setFilteredInvoices"
+      :invoiceLength="displayedInvoices.length"
     ></app-invoice-header>
     <div>
       <app-invoices-list
