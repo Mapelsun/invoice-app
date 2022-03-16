@@ -247,7 +247,7 @@
       </div>
     </div>
 
-    <!-- <div class="lists">
+    <div class="lists">
       <h2 class="lists__header">Item List</h2>
       <div class="lists__headings">
         <p>Item name</p>
@@ -318,19 +318,18 @@
       <small class="error" v-if="submitted && form.items.length === 0"
         >At least 1 item is required</small
       >
-    </div> -->
+    </div>
   </form>
 </template>
 
 <script>
 import dayjs from "dayjs";
-// import ActionButton from "@/components/shared/ActionButton";
+import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
-// import { required } from "vuelidate/lib/validators";
 export default {
   name: "invoiceForm",
   components: {
-    // "app-button": ActionButton,
+    "app-button": ActionButton,
   },
   data() {
     return {
@@ -356,7 +355,7 @@ export default {
           postCode: "",
           country: "",
         },
-        // items: [],
+        items: [],
         // total: 0,
       },
       terms: [
@@ -367,14 +366,11 @@ export default {
   },
   validations: {
     form: {
-      // id: "",
       createdAt: { required },
-      // paymentDue: { required },
       description: { required },
       paymentTerms: { required, numeric },
       clientName: { required },
       clientEmail: { required, email },
-      // status: { required },
       senderAddress: {
         street: { required },
         city: { required },
@@ -387,15 +383,17 @@ export default {
         postCode: { required },
         country: { required },
       },
-      // items: [
-      //   {
-      //     name: { required },
-      //     quantity: { required, numeric },
-      //     price: { required, numeric },
-      //     total: { required, numeric },
-      //   },
-      // ],
-      // total: { required, numeric },
+    },
+  },
+  watch: {
+    "form.items": {
+      handler: function (newValue) {
+        if (newValue.length !== 0) {
+          newValue.forEach((item) => (item.total = item.quantity * item.price));
+        }
+        console.log(newValue[0].name);
+      },
+      deep: true,
     },
   },
   methods: {
