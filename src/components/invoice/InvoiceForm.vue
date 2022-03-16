@@ -389,7 +389,6 @@ export default {
         if (newValue.length !== 0) {
           newValue.forEach((item) => (item.total = item.quantity * item.price));
         }
-        console.log(newValue[0].name);
       },
       deep: true,
     },
@@ -463,6 +462,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.$emit("close");
+          this.$router.go();
         })
         .catch((err) => console.log(err));
     },
@@ -477,6 +477,7 @@ export default {
         };
 
         console.log("draft-form-data", payload);
+        this.addInvoice(payload);
       } else if (type === "send") {
         this.submitted = true;
         this.$v.form.$touch();
@@ -492,8 +493,8 @@ export default {
           total: +this.calcTotal(this.form.items),
         };
 
-        console.log("save-form-data", payload);
         console.table("save-form-data", payload);
+        this.addInvoice(payload);
       }
     },
   },
