@@ -323,6 +323,7 @@
 </template>
 
 <script>
+import dayjs from "dayjs";
 // import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
 // import { required } from "vuelidate/lib/validators";
@@ -366,6 +367,7 @@ export default {
   },
   validations: {
     form: {
+      // id: "",
       createdAt: { required },
       // paymentDue: { required },
       description: { required },
@@ -415,6 +417,28 @@ export default {
     },
     removeItem(val) {
       this.form.items = this.form.items.filter((item) => item !== val);
+    },
+    generateId() {
+      let texts = "";
+      let digits = "";
+
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      const numbers = "0123456789";
+
+      for (let i = 0; i < 2; i++) {
+        texts += letters.charAt(Math.floor(Math.random() * letters.length));
+      }
+
+      for (let i = 0; i < 4; i++) {
+        digits += numbers.charAt(Math.floor(Math.random() * numbers.length));
+      }
+
+      return texts + digits;
+    },
+    addDays(presentDate, days) {
+      const date = new Date(presentDate);
+      const futureDate = new Date(date.setDate(date.getDate() + days));
+      return dayjs(futureDate).format("YYYY-MMM-DD");
     },
     submitForm() {
       this.submitted = true;
