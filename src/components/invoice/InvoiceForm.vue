@@ -325,6 +325,7 @@
 <script>
 // import ActionButton from "@/components/shared/ActionButton";
 import { required, email, numeric } from "vuelidate/lib/validators";
+// import { required } from "vuelidate/lib/validators";
 export default {
   name: "invoiceForm",
   components: {
@@ -334,14 +335,14 @@ export default {
     return {
       submitted: false,
       form: {
-        id: "",
+        // id: "",
         createdAt: "",
-        paymentDue: "",
+        // paymentDue: "",
         description: "",
         paymentTerms: "",
         clientName: "",
         clientEmail: "",
-        status: "",
+        // status: "",
         senderAddress: {
           street: "",
           city: "",
@@ -354,8 +355,8 @@ export default {
           postCode: "",
           country: "",
         },
-        items: [],
-        total: 0,
+        // items: [],
+        // total: 0,
       },
       terms: [
         1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -366,12 +367,12 @@ export default {
   validations: {
     form: {
       createdAt: { required },
-      paymentDue: { required },
+      // paymentDue: { required },
       description: { required },
       paymentTerms: { required, numeric },
       clientName: { required },
       clientEmail: { required, email },
-      status: { required },
+      // status: { required },
       senderAddress: {
         street: { required },
         city: { required },
