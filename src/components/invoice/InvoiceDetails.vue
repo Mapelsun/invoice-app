@@ -52,6 +52,7 @@
       v-if="showEditInvoice"
       @closeForm="showEditInvoice = false"
     ></app-edit-invoice>
+    <app-loading v-if="loading"></app-loading>
   </div>
 </template>
 
@@ -77,31 +78,42 @@ export default {
   },
   data() {
     return {
+      loading: false,
       showModal: false,
       showEditInvoice: false,
     };
   },
   methods: {
     deleteItem() {
+      this.loading = true;
       api
         .deleteInvoice(this.invoice.id)
         .then((response) => {
           console.log(response);
+          this.loading = false;
           this.showModal = false;
           this.$router.go(-1);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          this.loading = true;
+          console.log(err);
+        });
     },
     markAsPaid() {
       let data = { status: "paid" };
+      this.loading = true;
       api
         .markInvoiceAsPaid(this.invoice.id, data)
         .then((response) => {
           console.log(response);
+          this.loading = false;
           this.showModal = false;
           this.$router.go(-1);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          this.loading = true;
+          console.log(err);
+        });
     },
   },
 };

@@ -319,6 +319,7 @@
         >At least 1 item is required</small
       >
     </div>
+    <app-loading v-if="loading"></app-loading>
   </form>
 </template>
 
@@ -335,6 +336,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       submitted: false,
       form: {
         createdAt: "",
@@ -463,14 +465,19 @@ export default {
       return 0;
     },
     addInvoice(data) {
+      this.loading = true;
       api
         .addInvoice(data)
         .then((response) => {
           console.log(response);
+          this.loading = false;
           this.$emit("close");
           this.$router.go();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+        });
     },
     submitForm(type) {
       const payload = {

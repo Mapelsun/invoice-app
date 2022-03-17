@@ -16,6 +16,7 @@
       v-if="showCreateInvoice"
       @closeForm="showCreateInvoice = false"
     ></app-create-invoice>
+    <app-loading v-if="loading"></app-loading>
   </section>
 </template>
 
@@ -29,13 +30,18 @@ import CreateInvoice from "@/components/invoice/CreateInvoice";
 export default {
   name: "invoicesHome",
   created() {
+    this.loading = true;
     api
       .getInvoices()
       .then((response) => {
+        this.loading = false;
         this.$store.dispatch("setInvoices", response.data);
         this.displayedInvoices = response.data;
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        this.loading = false;
+        console.log(err);
+      });
   },
   computed: mapState(["invoices"]),
   components: {
@@ -46,6 +52,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       showCreateInvoice: false,
       displayedInvoices: [],
     };
