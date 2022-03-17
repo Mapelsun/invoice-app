@@ -8,18 +8,19 @@
       <p v-else>No invoices</p>
     </div>
     <div class="heading__right">
-      <div class="form__group">
-        <select
+      <div class="form__group filter-bar">
+        <input
+          readonly
           class="form__input"
-          v-model.lazy="form.searchFilter"
+          v-model.lazy="searchFilter"
           name="searchFilter"
-          @change="toggleFilter"
-        >
-          <option disabled value="">Filter by status</option>
-          <option v-for="(data, index) in filters" :key="index" :value="data">
-            {{ data }}
-          </option>
-        </select>
+          @focus="showFilterDropdown = true"
+        />
+        <app-dropdown
+          v-if="showFilterDropdown"
+          :items="filters"
+          @selected="changeFilter"
+        ></app-dropdown>
       </div>
 
       <app-button type="default" @click.native="$emit('openForm')">
@@ -33,6 +34,7 @@
 <script>
 import { mapState } from "vuex";
 import ActionButton from "@/components/shared/ActionButton";
+import AppDropDown from "@/components/widgets/AppDropDown";
 export default {
   name: "invoicesHeader",
   computed: mapState(["invoices"]),
@@ -43,26 +45,30 @@ export default {
   },
   components: {
     "app-button": ActionButton,
+    "app-dropdown": AppDropDown,
   },
   data() {
     return {
-      form: {
-        searchFilter: "",
-      },
+      searchFilter: "Filter by status",
+      showFilterDropdown: false,
       filters: ["Paid", "Pending", "Draft", "All"],
     };
   },
   methods: {
-    toggleFilter(e) {
-      const query = e.target.value;
-      if (query === "All") {
+    toggleFilter(val) {
+      if (val === "All") {
         this.$emit("filteredInvoices", this.invoices);
       } else {
         const filteredArr = this.invoices.filter(
-          (invoice) => invoice.status === query.toLowerCase()
+          (invoice) => invoice.status === val.toLowerCase()
         );
         this.$emit("filteredInvoices", filteredArr);
       }
+    },
+    changeFilter(val) {
+      this.searchFilter = val;
+      this.toggleFilter(val);
+      this.showFilterDropdown = false;
     },
   },
 };
@@ -85,7 +91,7 @@ export default {
       border-radius: 50%;
     }
   }
-  select {
+  input {
     appearance: none;
     border: none;
     cursor: pointer;
@@ -108,5 +114,8 @@ export default {
       padding: 0.5em 1em;
     }
   }
+}
+.filter-bar {
+  position: relative;
 }
 </style>
