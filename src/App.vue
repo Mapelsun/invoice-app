@@ -40,6 +40,12 @@ export default {
   --clr-white: #ffffff;
 }
 
+[data-theme="dark"] {
+  --clr-bg-dark-two: #f8f8fb;
+  --clr-white: #0c0e16;
+  --clr-bg-dark-three: #ffffff;
+}
+
 // Basic default global reset
 html {
   box-sizing: border-box;

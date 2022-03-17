@@ -4,8 +4,9 @@
       <div class="nav__logo">
         <img src="@/assets/logo.svg" alt="logo" />
       </div>
-      <div class="nav__toggle">
-        <img src="@/assets/icon-sun.svg" alt="sun icon" />
+      <div class="nav__toggle" @click="toggleSwitch = !toggleSwitch">
+        <img v-if="toggleSwitch" src="@/assets/icon-moon.svg" alt="moon icon" />
+        <img v-else src="@/assets/icon-sun.svg" alt="sun icon" />
       </div>
     </div>
     <div class="nav__user">
@@ -17,6 +18,24 @@
 <script>
 export default {
   name: "mainSidebar",
+  data() {
+    return {
+      toggleSwitch: false,
+    };
+  },
+  watch: {
+    toggleSwitch: {
+      handler: function (newValue) {
+        if (newValue === true) {
+          document.documentElement.setAttribute("data-theme", "dark");
+          localStorage.setItem("theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+          localStorage.setItem("theme", "light");
+        }
+      },
+    },
+  },
 };
 </script>
 
