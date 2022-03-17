@@ -10,9 +10,11 @@ Vue.use(Vuelidate);
 // Layouts
 import DefaultLayout from "@/layouts/DefaultLayout.vue";
 import HomeLayout from "@/layouts/HomeLayout.vue";
+import AppLoader from "@/components/widgets/AppLoader.vue";
 
 Vue.component("default-layout", DefaultLayout);
 Vue.component("home-layout", HomeLayout);
+Vue.component("app-loading", AppLoader);
 
 Vue.filter("capitalize", (value) => {
   return value
