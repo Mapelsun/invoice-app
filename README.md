@@ -1,10 +1,6 @@
-### Objective
-
-Your challenge is to build out this invoicing application for Papershift GmbH's accounting department and get it looking as close to the design as possible.
-
 ### Brief
 
-Using JavaScript and Vue, your task is to build out the project to the design files provided in the `/designs` folder. The functionality outlined in **Expected Behaviour** is more important than implementing the designs pixel-perfect. You are only supposed to build out the desktop version of the assignment and it does not need to be responsive.
+Using JavaScript and Vue, your task is to build out the project to the design files provided in the `/designs` folder. The functionality outlined in **Expected Behaviour** is more important than implementing the designs pixel-perfect.
 
 All the required assets for this project are in the `/assets` folder. The assets are already exported for the correct screen size and optimized. Some images are reusable at multiple screen sizes. So if you don't see an image in a specific folder, it will typically be in another folder for that page.
 
@@ -36,21 +32,3 @@ Your users should be able to:
 - Users should be able to mark invoices as paid by clicking the "Mark as Paid" button. This should change the invoice's status to "paid".
 - **Bonus**: Users should receive a confirmation modal when trying to delete invoices.
 - Feel free not to add custom styling for the date and dropdown form fields. The designs for those fields are optional extras and are mostly for illustration purposes.
-
-### Evaluation Criteria
-
-- **JavaScript** best practices
-- Show us your work through your commit history
-- We're looking for you to produce working code with enough room to demonstrate how to structure components in a small program
-- Completeness: did you complete the features?
-- Correctness: does the functionality act in sensible, thought-out ways?
-- Maintainability: is it written in a clean, maintainable way?
-- Testing: is the system adequately tested?
-
-### CodeSubmit
-
-Please organize, design, test, and document your code as if it were going into production - then push your changes to the master branch. After you have pushed your code, you may submit the assignment on the assignment page.
-
-**Have fun building!** 🚀
-
-The Papershift GmbH Team
